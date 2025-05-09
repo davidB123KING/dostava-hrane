@@ -2,12 +2,12 @@
 <html lang="sl">
     <head>
         <title>index-stran</title>
-        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="oblika.css">
 
 </head>
 <body>
-    <div id="zunanji">
-        <div id="meni">
+    <div class="vse">
+        <div class="meni">
             <a href="index.php">Domov</a>
             <a href="meni.php">Meni</a>
             <a href="kontakt.php">Kontakt</a>

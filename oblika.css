@@ -1,0 +1,16 @@
+body{
+    background-color: olive;
+    font-family: Arial, sans-serif;
+}
+.vse{
+    background-color: midnightblue;
+    margin: auto;
+    width:70%;
+    padding: 20px;
+    border-radius: 10px;
+    
+
+}
+p{
+    padding-left:5%;
+}
