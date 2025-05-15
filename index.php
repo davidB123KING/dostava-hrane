@@ -6,7 +6,9 @@
 
 </head>
 <body>
+    <img src="restavracija.png" alt="restavracija">
     <div class="vse">
+        
         <div class="meni">
             <a href="index.php">Domov</a>
             <a href="meni.php">Meni</a>
