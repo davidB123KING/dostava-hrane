@@ -1,16 +1,30 @@
 body{
-    font-family: Arial, sans-serif;
+    font-family: 'Lato', 'Open Sans', 'Segoe UI';
+    background-image:url("restavracija.png");
+    background-color: #f5f1ec;
 }
 .vse{
-    background-color: midnightblue;
+    background-color:#ffffff;
     margin: auto;
     width:70%;
     padding: 20px;
     border-radius: 10px;
-    background-image:url("restavracija.png");
-    
 
 }
 p{
     padding-left:5%;
+    color:#2e2e2e;
+}
+h1 , h2{
+    color:#3e2f23
+}
+
+a{
+  text-decoration: none;
+  border: 1px solid #4b4948;
+  padding: 2px 6px;
+  border-radius: 7px;
+}
+a:hover {
+  background-color: #a57f60;
 }
