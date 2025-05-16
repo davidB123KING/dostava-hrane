@@ -6,9 +6,7 @@
 
 </head>
 <body>
-    <img src="restavracija.png" alt="restavracija">
     <div class="vse">
-        
         <div class="meni">
             <a href="index.php">Domov</a>
             <a href="meni.php">Meni</a>
@@ -16,7 +14,7 @@
 </div>
         <div id="notranji">
             <h1>DOSTAVA HRANE - na dom enostavno in hitro</h1>
-            <p>naroči zdaj iz najljubših restavracij</p>
+            <p>Naroči zdaj iz najljubših restavracij</p>
 </div>
 </div>
 </body>
