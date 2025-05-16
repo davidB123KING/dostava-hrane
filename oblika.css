@@ -2,6 +2,10 @@ body{
     font-family: 'Lato', 'Open Sans', 'Segoe UI';
     background-image:url("restavracija.png");
     background-color: #f5f1ec;
+    /*chat-gpt pomoč */
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*do sem*/
 }
 .vse{
     background-color:#ffffff;
@@ -27,4 +31,12 @@ a{
 }
 a:hover {
   background-color: #a57f60;
+}
+.desno{
+    float:right;
+    margin-right: 2%;
+}
+.meni{
+  border-bottom: #2e2e2e 1px solid;
+  padding: 10px;
 }
