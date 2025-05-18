@@ -2,10 +2,8 @@ body{
     font-family: 'Lato', 'Open Sans', 'Segoe UI';
     background-image:url("restavracija.png");
     background-color: #f5f1ec;
-    /*chat-gpt pomoč */
     background-repeat: no-repeat;
     background-size: cover;
-    /*do sem*/
 }
 .vse{
     background-color:#ffffff;

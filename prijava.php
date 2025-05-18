@@ -25,16 +25,19 @@ if(isset($_POST['subm'])){
 <html lang="sl">
 <head>
 <title>prijavaPHP</title>
+<link rel="stylesheet" href="oblika.css">
 </head>
 <body>
+	<div class="vse">
 <h1>PRIJAVA UPORABNIKA</h1>
 	<form method="post" action="#">
-		<p><input type="email" name="email" placeholder="vnesi e-mail" required></p>
-		<p><input type="password" name="geslo" placeholder="vnesi geslo"required></p>
+		<p>Vnesi <b>e-mail</b><input type="email" name="email" placeholder="vnesi e-mail" required></p>
+		<p>Vnesi <b>geslo</b><input type="password" name="geslo" placeholder="vnesi geslo"required></p>
 		<p><input type="submit" name="subm" value="prijava"></p>
 	</form>
 	<p>
 		<a href="index.php">Domov</a>
 	</p>
+	</div>
 </body>
 </html>
