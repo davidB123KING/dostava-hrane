@@ -11,6 +11,7 @@ body{
     width:70%;
     padding: 20px;
     border-radius: 10px;
+    text-align: center;
     
 
 }
@@ -39,3 +40,11 @@ a:hover {
   border-bottom: #2e2e2e 1px solid;
   padding: 10px;
 }
+
+.otrok_slika{
+  width:50%;
+  height:50%;
+  
+}
+
+

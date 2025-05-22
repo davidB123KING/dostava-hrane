@@ -18,6 +18,11 @@
             <h1>DOSTAVA HRANE - na dom enostavno in hitro</h1>
             <p>naroči zdaj iz najljubših restavracij</p>
 </div>
+
+    <a class="slika" href="meni.php">
+        <img src="otrok_meni.png" alt="Meni" class="otrok_slika">
+    </a>
+
 </div>
 </body>
     </html>
