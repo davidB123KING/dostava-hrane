@@ -24,13 +24,16 @@ h1 , h2{
 }
 
 a{
-  text-decoration: none;
-  border: 1px solid #4b4948;
-  padding: 2px 6px;
-  border-radius: 7px;
+  background-color: #6C63FF;  /* npr. vijolična */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 a:hover {
-  background-color: #a57f60;
+  background-color: #5753c9;
 }
 .desno{
     float:right;
@@ -41,10 +44,5 @@ a:hover {
   padding: 10px;
 }
 
-.otrok_slika{
-  width:50%;
-  height:50%;
-  
-}
 
 

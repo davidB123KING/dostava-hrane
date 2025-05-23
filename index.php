@@ -19,10 +19,6 @@
             <p>naroči zdaj iz najljubših restavracij</p>
 </div>
 
-    <a class="slika" href="meni.php">
-        <img src="otrok_meni.png" alt="Meni" class="otrok_slika">
-    </a>
-
 </div>
 </body>
     </html>
