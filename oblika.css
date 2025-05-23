@@ -4,16 +4,15 @@ body{
     background-color: #f5f1ec;
     background-repeat: no-repeat;
     background-size: cover;
+    margin:0;
+    padding :0;
 }
 .vse{
-    background-color:#ffffff;
+background-color:#ffffff;
     margin: auto;
     width:70%;
     padding: 20px;
     border-radius: 10px;
-    
-    
-
 }
 p{
     padding-left:5%;
@@ -35,15 +34,25 @@ a{
 a:hover {
   background-color: #5753c9;
 }
-.desno{
-    float:right;
-    margin-right: 2%;
-}
 .meni{
-  border-bottom: #2e2e2e 1px solid;
   padding: 10px;
-  align-items: center;
+  margin: 0;
+  border:#2e2e2e 1px;
+  background-color: brown;
 }
+.desno{
+  margin-left:650px;
+}
+.levo{
+  
+}
+
+#notranji{
+  margin-top:60px;
+  text-align: center;
+}
+
+
 
 
 

@@ -9,10 +9,15 @@
     
     <div class="vse">
         <div class="meni">
-            <?php include 'glava.php'; ?>
+            <div class="levo">
             <a href="index.php">Domov</a>
             <a href="meni.php">Meni</a>
             <a href="kontakt.php">Kontakt</a>
+</div>
+
+            <div class="desno">
+            <?php include 'glava.php'; ?>
+</div>
 </div>
         <div id="notranji">
             <h1>DOSTAVA HRANE - na dom enostavno in hitro</h1>
