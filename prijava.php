@@ -14,8 +14,15 @@ if(isset($_POST['subm'])){
 		/*echo $row['ime'] ." in ". $row['priimek'];*/
 		$_SESSION['name']=$row['ime'];
 		$_SESSION['surname']=$row['priimek'];
+		$_SESSION['vloga']= $uporabnik['vloga'];
 		$_SESSION['idu']=$row['id_u'];
 		$_SESSION['log']=TRUE;
+
+		if ($uporabnik['vloga'] === 'admin') {
+        header("Location: admin.php");
+    } else {
+        header("Location: index.php");
+    }
 	}
 }
 

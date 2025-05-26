@@ -10,3 +10,4 @@ or die("Povezovanje ni mogoče");
 
 mysqli_set_charset($link ,"utf8");
 
+?>
