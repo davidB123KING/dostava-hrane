@@ -14,19 +14,20 @@ if (!isset($_SESSION['vloga']) || $_SESSION['vloga'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <title>Admin nadzorna plošča</title>
+    <link rel="stylesheet" href="oblika.css">
 </head>
 <body>
+    <div class="vse">
     <h1>Admin nadzorna plošča</h1>
     <p>Prijavljen kot: <strong><?php echo $_SESSION['name']; ?></strong></p>
+    <div class="meni">
+        <a href="dodaj_hrano.php"> Dodaj hrano</a>
+        <a href="seznam_hrane.php"> Uredi/izbriši hrano</a>
+        <a href="uporabniki.php"> Upravljanje uporabnikov</a>
+        <a href="odjava.php">🚪 Odjava</a>
 
-    <ul>
-        <li><a href="admin/dodaj_hrano.php">➕ Dodaj hrano</a></li>
-        <li><a href="admin/uredi_hrano.php">✏️ Uredi/izbriši hrano</a></li>
-        <li><a href="admin/uporabniki.php">👥 Upravljanje uporabnikov</a></li>
-        <!-- Dodaj dodatne funkcije po želji -->
-    </ul>
-
-    <p><a href="odjava.php">🚪 Odjava</a></p>
+</div>
+</div>
 </body>
 </html>
 

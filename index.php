@@ -12,7 +12,6 @@ require_once 'baza.php';
 </head>
 <body>
     
-    <div class="vse">
         <div class="meni">
             <div class="levo">
             <a href="index.php">Domov</a>
@@ -24,11 +23,12 @@ require_once 'baza.php';
             <?php include 'glava.php'; ?>
 </div>
 </div>
+        <div class="vse">
         <div id="notranji">
             <h1>DOSTAVA HRANE - na dom enostavno in hitro</h1>
             <p>naroči zdaj iz najljubših restavracij</p>
 </div>
-
 </div>
+
 </body>
     </html>

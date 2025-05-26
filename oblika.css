@@ -1,58 +1,74 @@
-body{
-    font-family: 'Lato', 'Open Sans', 'Segoe UI';
-    background-image:url("restavracija.png");
+/* Osnovne nastavitve */
+body {
+    font-family: 'Lato', 'Open Sans', 'Segoe UI', Arial, sans-serif;
     background-color: #f5f1ec;
     background-repeat: no-repeat;
     background-size: cover;
-    margin:0;
-    padding :0;
+    margin: 0;
+    padding: 0;
+    color: #2e2e2e;
 }
-.vse{
-background-color:#ffffff;
-    margin: auto;
-    width:70%;
+
+/* Glavni vsebinski okvir */
+.vse {
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
 }
-p{
-    padding-left:5%;
-    color:#2e2e2e;
-}
-h1 , h2{
-    color:#3e2f23
+
+/* Odstavki */
+p {
+    padding-left: 5%;
+    color: #2e2e2e;
+    font-size: 16px;
+    line-height: 22px;
 }
 
-a{
-  background-color: #6C63FF;  /* npr. vijolična */
+/* Naslovi */
+h1, h2 {
+    color: #3e2f23;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Povezave */
+a {
+    text-decoration: none;
+    background-color: #6c63ff;
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    margin-right: 10px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    display: inline-block;
 }
+
 a:hover {
-  background-color: #5753c9;
-}
-.meni{
-  padding: 10px;
-  margin: 0;
-  border:#2e2e2e 1px;
-  background-color: brown;
-}
-.desno{
-  margin-left:650px;
-}
-.levo{
-  
+    background-color: #5753c9;
 }
 
-#notranji{
-  margin-top:60px;
-  text-align: center;
+/* Meni - ločen zgornji odsek */
+.meni {
+    padding: 10px;
+    margin: 0;
+    background-color: rgb(100, 181, 228);
+    border: 1px solid #2e2e2e;
 }
 
+/* Leva poravnava v meniju */
+.levo {
+    text-align: left;
+    margin-bottom: 10px;
+}
 
+/* Desna poravnava v meniju */
+.desno {
+    text-align: right;
+    margin-top: -25px;
+}
 
-
-
+/* Notranja vsebina */
+#notranji {
+    margin-top: 60px;
+    text-align: center;
+}
