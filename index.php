@@ -1,3 +1,8 @@
+<?php
+include_once 'seja.php';
+require_once 'baza.php';
+?>
+
 <!DOCTYPE html>
 <html lang="sl">
     <head>

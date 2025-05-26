@@ -1,10 +1,11 @@
 <?php
-session_start();
+include_once 'seja.php';
 
 // Preveri, ali je uporabnik admin
 if (!isset($_SESSION['vloga']) || $_SESSION['vloga'] !== 'admin') {
     header("Location: index.php");
     exit;
+
 }
 ?>
 
@@ -16,7 +17,7 @@ if (!isset($_SESSION['vloga']) || $_SESSION['vloga'] !== 'admin') {
 </head>
 <body>
     <h1>Admin nadzorna plošča</h1>
-    <p>Prijavljen kot: <strong><?php echo $_SESSION['ime']; ?></strong></p>
+    <p>Prijavljen kot: <strong><?php echo $_SESSION['name']; ?></strong></p>
 
     <ul>
         <li><a href="admin/dodaj_hrano.php">➕ Dodaj hrano</a></li>

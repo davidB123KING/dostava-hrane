@@ -22,11 +22,11 @@ $result= mysqli_query($link ,$sql);
         <p>Naslov:<input type="text"name="naslov"placeholder="vnesi naslov"required></p>
 		<p>Mail:<input type="email"name="email"placeholder="vnesi mail"required></p>
 		<p>Geslo:<input type="password"name="geslo"placeholder="vnesi geslo"></p>
-        <p>Telefon:<input type="tel"name="telefonska-stevilka"placeholder="vnesi telefon"required></p>
+        <p>Telefon:<input type="tel"name="telefonska_stevilka"placeholder="vnesi telefon"required></p>
         <p>Izberi vlogo<select name="vloga" required>
         <option value="uporabnik">uporabnik</option>
-        <option value="dostavljalec">kurir</option>
-        <option value="admin">restavracija</option>
+        <option value="dostavljalec">dostavljalec</option>
+        <option value="admin">admin</option>
         </select></p>
 		<p>Kraj:<select name="kraj_id" required>
 		<?php
