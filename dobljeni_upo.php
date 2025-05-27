@@ -5,7 +5,7 @@ $p=$_POST['priimek'];
 $n=$_POST['naslov'];
 $e=$_POST['email'];
 $g=$_POST['geslo'];
-$t=$_POST['telefonska-stevilka'];
+$t=$_POST['telefonska_stevilka'];
 $k=$_POST['kraj_id'];
 $v=$_POST['vloga'];
 

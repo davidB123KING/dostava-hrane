@@ -6,7 +6,7 @@ require_once 'baza.php';
 if (isset($_GET['izbrisi'])) {
     $id = $_GET['izbrisi'];
     mysqli_query($link, "DELETE FROM hrana WHERE id = $id");
-    header("Location: upravljaj_hrano.php");
+    header("Location: uredi_brisi_hrano.php");
     exit;
 }
 
@@ -26,7 +26,7 @@ if (isset($_POST['shrani'])) {
         cena = '{$_POST['cena']}',
         kategorija_id = '{$_POST['kategorija_id']}'
         WHERE id = $id");
-    header("Location: upravljaj_hrano.php");
+    header("Location: uredi_brisi_hrano.php");
     exit;
 }
 
@@ -62,7 +62,7 @@ $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
             <td><?= $vr['ime'] ?></td>
             <td>
                 <a href="?uredi=<?= $vr['id'] ?>">Uredi</a> | 
-                <a href="?izbrisi=<?= $vr['id'] ?>" onclick="return confirm('Izbrišem?')">Izbriši</a>
+                <a href="?izbrisi=<?= $vr['id'] ?>">Izbriši</a>
             </td>
         </tr>
         <?php endwhile; ?>
@@ -81,7 +81,7 @@ $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
         <select name="kategorija_id">
             <?php while ($kat = mysqli_fetch_assoc($kategorije)) : ?>
                 <option value="<?= $kat['id'] ?>" <?= $kat['id'] == $uredi['kategorija_id'] ? 'selected' : '' ?>>
-                    <?= $kat['ime_kategorije'] ?>
+                    <?= $kat['ime'] ?>
                 </option>
             <?php endwhile; ?>
         </select><br><br>
@@ -90,5 +90,10 @@ $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
     </form>
 <?php endif; ?>
 </div>
+            <div>
+                <p>
+                    <a href ="admin.php">Nazaj na admin nadzorno ploščo</a>
+                </p>  
+            </div>
 </body>
 </html>

@@ -22,13 +22,10 @@ $rezultat = mysqli_query($link, $sql);
     <form action="hrana_v_bazo.php" method="post">
         Ime hrane:<br>
         <input type="text" name="ime" required><br><br>
-
         Opis hrane:<br>
         <textarea name="opis" rows="4" cols="50" required></textarea><br><br>
-
         Cena (EUR):<br>
-        <input type="number" step="0.01" name="cena" required><br><br>
-
+        <input type="number" name="cena" required><br><br>
         Kategorija:<br>
         <select name="kategorija_id" required>
             <option value="">Izberi kategorijo</option>

@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (mysqli_query($link, $sql)) {
         // uspešno shranjeno
-        header("Location: seznam_hrane.php"); // naredi to stran, če želiš prikaz
+        header("Location: uredi_brisi_hrano.php"); // naredi to stran, če želiš prikaz
         exit;
     } else {
         echo "Napaka pri shranjevanju: " . mysqli_error($link);

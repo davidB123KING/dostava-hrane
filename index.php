@@ -11,7 +11,6 @@ require_once 'baza.php';
 
 </head>
 <body>
-    
         <div class="meni">
             <div class="levo">
             <a href="index.php">Domov</a>
