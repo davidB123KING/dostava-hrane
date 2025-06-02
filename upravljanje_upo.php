@@ -116,6 +116,6 @@ $kraji = mysqli_query($link, "SELECT * FROM kraji");
     </form>
 <?php endif; ?>
 
-<p><a href="index.php">Domov</a></p>
+<p><a href="admin.php">Nazaj na nadzorno ploščo</a></p>
 </body>
 </html>

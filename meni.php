@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <title>Jedi po kategoriji</title>
+    <link rel="stylesheet" href="oblika.css">
+</head>
+<body>
+
 <?php
 // Povezava z bazo
 require_once 'baza.php';

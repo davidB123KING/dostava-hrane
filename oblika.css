@@ -76,3 +76,8 @@ a:hover {
 table{
     border-collapse: collapse;
 }
+
+ul ,ol {
+    text-align: center;
+     list-style-position: inside;
+}
