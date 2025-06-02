@@ -4,7 +4,7 @@ require_once 'baza.php';
 // Brisanje uporabnika
 if (isset($_GET['izbrisi'])) {
     $id = $_GET['izbrisi'];
-    mysqli_query($link, "DELETE FROM uporabniki WHERE id = $id");
+    mysqli_query($link, "DELETE FROM uporabniki WHERE id_u = $id");
     header("Location: upravljanje_upo.php");
     exit;
 }
@@ -83,7 +83,7 @@ $kraji = mysqli_query($link, "SELECT * FROM kraji");
             <td><?= $vr['vloga'] ?></td>
             <td>
                 <a href="?uredi=<?= $vr['id_u'] ?>">Uredi</a> |
-                <a href="?izbrisi=<?= $vr['id_u'] ?>" onclick="return confirm('Izbrišem uporabnika?')">Izbriši</a>
+                <a href="?izbrisi=<?= $vr['id_u'] ?>">Izbriši</a>
             </td>
         </tr>
         <?php endwhile; ?>

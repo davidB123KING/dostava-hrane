@@ -18,7 +18,7 @@ if (!isset($_SESSION['vloga']) || $_SESSION['vloga'] !== 'admin') {
 </head>
 <body>
     <div class="vse">
-    <h1>Admin nadzorna plošča</h1>
+    <h1>Administratorski pogled</h1>
     <p>Prijavljen kot: <strong><?php echo $_SESSION['name']; ?></strong></p>
     <div class="meni">
         <a href="dodaj_hrano.php"> Dodaj hrano</a>
