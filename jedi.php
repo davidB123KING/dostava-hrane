@@ -7,25 +7,25 @@
 </head>
 <body>
 
-
 <?php
-require 'baza.php';
+require_once 'baza.php';
 
-$kategorija_id = $_GET['kategorija'];
+$kategorija_id = $_GET['kategorija'] ?? null;
 
-$result = mysqli_query($link, "SELECT ime FROM kategorije WHERE id = '$kategorija_id'");
-$row = mysqli_fetch_assoc($result);
-$ime_kategorije = $row['ime'];
+if ($kategorija_id) {
+    $jedi = mysqli_query($link, "SELECT * FROM hrana WHERE kategorija_id = $kategorija_id");
 
-echo "<h2>Jedi za kategorijo: " . $ime_kategorije . "</h2>";
-
-$jedi = mysqli_query($link, "SELECT * FROM hrana WHERE kategorija_id = '$kategorija_id'");
-
-echo "<ul>";
-while ($jed = mysqli_fetch_assoc($jedi)) {
-    echo "<li><strong>" . $jed['ime'] . "</strong> - " . $jed['opis'] . "</li>";
+    echo "<h2>Jedi v izbrani kategoriji</h2><ul>";
+    while ($jed = mysqli_fetch_assoc($jedi)) {
+        echo "<li><strong>{$jed['ime']}</strong> - {$jed['opis']}</li>";
+    }
+    echo "</ul>";
+} else {
+    echo "<p>Ni izbrane kategorije.</p>";
 }
-echo "</ul>";
 
 mysqli_close($link);
 ?>
+
+</body>
+</html>

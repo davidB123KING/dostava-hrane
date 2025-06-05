@@ -24,6 +24,7 @@ if (!isset($_SESSION['vloga']) || $_SESSION['vloga'] !== 'admin') {
         <a href="dodaj_hrano.php"> Dodaj hrano</a>
         <a href="uredi_brisi_hrano.php"> Uredi/izbriši hrano</a>
         <a href="upravljanje_upo.php"> Upravljanje uporabnikov</a>
+        <a href="dodaj_kat.php">Dodaj novo kategorijo</a>
         <a href="odjava.php">🚪 Odjava</a>
 
 </div>

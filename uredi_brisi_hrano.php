@@ -32,9 +32,11 @@ if (isset($_POST['shrani'])) {
 
 // Prikaz hrane
 $hrana = mysqli_query($link, "
-    SELECT h.id, h.ime, h.opis, h.cena, k.ime, h.kategorija_id
+    SELECT h.id, h.ime AS ime_hrane, h.opis, h.cena, k.ime AS ime_kategorije, h.kategorija_id
     FROM hrana h JOIN kategorije k ON h.kategorija_id = k.id
 ");
+//ime hrane in kategorije sem uporabil 2x zato se mije isto prikazovalo. Zato sem uporabil AS dasem ju preimenoval
+
 
 // Kategorije
 $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
@@ -56,10 +58,10 @@ $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
         </tr>
         <?php while ($vr = mysqli_fetch_assoc($hrana)) : ?>
         <tr>
-            <td><?= $vr['ime'] ?></td>
+            <td><?= $vr['ime_hrane'] ?></td>
             <td><?= $vr['opis'] ?></td>
             <td><?= $vr['cena'] ?> €</td>
-            <td><?= $vr['ime'] ?></td>
+            <td><?= $vr['ime_kategorije'] ?></td>
             <td>
                 <a href="?uredi=<?= $vr['id'] ?>">Uredi</a> | 
                 <a href="?izbrisi=<?= $vr['id'] ?>">Izbriši</a>
