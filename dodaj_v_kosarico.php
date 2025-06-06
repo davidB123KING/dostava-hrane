@@ -1,21 +1,22 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $link = new mysqli("localhost", "root", "", "dostava-hrane");
+session_start();
+require_once 'baza.php';
 
-    $id = $_POST['id'];
-    $ime = $_POST['ime'];
-    $opis = $_POST['opis'];
-    $cena = $_POST['cena'];
-    $kategorija_id = $_POST['kategorija_id'];
+if (isset($_POST['hrana_id']) && isset($_SESSION['narocilo_id'])) {
+    $hrana_id = $_POST['hrana_id'];
+    $narocilo_id = $_SESSION['narocilo_id'];
 
-    $sql = "INSERT INTO naročila (id, ime, opis, cena, kategorija_id)
-            VALUES ('$id', '$ime', '$opis', '$cena', '$kategorija_id')";
+    // Pridobi ceno hrane iz tabele hrana
+    $query_hrana = mysqli_query($link, "SELECT cena FROM hrana WHERE id = $hrana_id");
+    $row = mysqli_fetch_assoc($query_hrana);
+    $cena = $row['cena'];
 
-    if ($link->query($sql)) {
-        echo "Dodano v košarico!<br>";
-        echo "<a href='jedi.php'>Nazaj na jedi</a>";
-    } else {
-        echo "Napaka: " . $link->error;
-    }
+    // Privzeta količina = 1
+    $query = "INSERT INTO `zaključna-naročila` (naročilo_id, hrana_id, količina, cena)
+              VALUES ($narocilo_id, $hrana_id, 1, $cena)";
+    mysqli_query($link, $query);
 }
+
+header("Location: kosarica.php");
+exit;
 ?>
