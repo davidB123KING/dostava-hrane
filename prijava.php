@@ -23,7 +23,13 @@ if(isset($_POST['subm'])){
 		if ($row['vloga'] === 'admin') {
         header("Location: admin.php");
 		exit;
-    } else {
+    } 
+	if ($row['vloga'] === 'dostavljalec') {
+		header("Location: dostavljalec.php");
+		exit;
+	}
+	
+	else {
         header("Location: index.php");
 		exit;
     }

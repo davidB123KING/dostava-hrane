@@ -1,45 +1,40 @@
+<?php
+$link = mysqli_connect("localhost", "root", "", "dostava-hrane");
+
+if (isset($_GET['kategorija'])) {
+    $kategorija_id = $_GET['kategorija'];
+
+    // Prikažemo ime kategorije
+    $kat = mysqli_query($link, "SELECT ime FROM kategorije WHERE id = $kategorija_id");
+    $kategorija = mysqli_fetch_assoc($kat);
+    echo "<h2>Jedi v kategoriji: {$kategorija['ime']}</h2>";
+
+    // Prikažemo jedi
+    $hrana = mysqli_query($link, "SELECT * FROM hrana WHERE kategorija_id = $kategorija_id");
+
+    while ($jed = mysqli_fetch_assoc($hrana)) {
+        echo "<div style='margin-bottom: 15px;'>";
+        echo "<h3>{$jed['ime']}</h3>";
+        echo "<p>{$jed['opis']}</p>";
+        echo "<p>Cena: {$jed['cena']} €</p>";
+        echo "<form action='dodaj_v_kosarico.php' method='post'>";
+        echo "<input type='hidden' name='hrana_id' value='{$jed['id']}'>";
+        echo "<input type='number' name='kolicina' value='1' min='1'>";
+        echo "<input type='submit' value='Dodaj v košarico'>";
+        echo "</form>";
+        echo "</div><hr>";
+    }
+} else {
+    echo "Kategorija ni izbrana.";
+}
+?>
 <!DOCTYPE html>
-<html lang="sl">
+<html lang="sl">   
 <head>
     <meta charset="UTF-8">
-    <title>Jedi po kategoriji</title>
+    <title>Meni</title>
     <link rel="stylesheet" href="oblika.css">
 </head>
 <body>
-
-<?php
-session_start();
-require_once 'baza.php';
-
-$kategorija_id = $_GET['kategorija'] ?? null;
-
-// Ustvari ID naročila za sejo, če še ni
-if (!isset($_SESSION['trenutno_narocilo_id'])) {
-    $_SESSION['trenutno_narocilo_id'] = uniqid();
-}
-
-if ($kategorija_id) {
-    $jedi = mysqli_query($link, "SELECT * FROM hrana WHERE kategorija_id = $kategorija_id");
-
-    echo "<h2>Jedi v izbrani kategoriji</h2><ul>";
-    while ($jed = mysqli_fetch_assoc($jedi)) {
-        echo "<li>
-                <strong>{$jed['ime']}</strong> - {$jed['opis']} - {$jed['cena']} €
-                <form method='post' action='dodaj_v_kosarico.php' style='display:inline; margin-left: 10px;'>
-                    <input type='hidden' name='hrana_id' value='{$jed['id']}'>
-                    <button type='submit'>Dodaj v košarico</button>
-                </form>
-              </li>";
-    }
-    echo "</ul>";
-} else {
-    echo "<p>Ni izbrane kategorije.</p>";
-}
-
-mysqli_close($link);
-?>
-
-<a href="kosarica.php">Poglej košarico</a>
-
 </body>
 </html>

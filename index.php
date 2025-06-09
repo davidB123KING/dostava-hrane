@@ -16,11 +16,12 @@ require_once 'baza.php';
             <a href="index.php">Domov</a>
             <a href="meni.php">Meni</a>
             <a href="kontakt.php">Kontakt</a>
+            <span id="desno">
+            <?php include 'glava.php'; ?>
+            <a href="kosarica.php">Košarica</a></span>
 </div>
 
-            <div class="desno">
-            <?php include 'glava.php'; ?>
-</div>
+            
 </div>
         <div class="vse">
         <div id="notranji">
@@ -28,6 +29,7 @@ require_once 'baza.php';
             <p>naroči zdaj iz najljubših restavracij</p>
 </div>
 </div>
+
 
 </body>
     </html>

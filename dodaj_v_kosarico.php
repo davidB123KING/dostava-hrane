@@ -1,21 +1,30 @@
 <?php
 session_start();
-require_once 'baza.php';
+$link = mysqli_connect("localhost", "root", "", "dostava-hrane");
 
-if (isset($_POST['hrana_id']) && isset($_SESSION['narocilo_id'])) {
-    $hrana_id = $_POST['hrana_id'];
-    $narocilo_id = $_SESSION['narocilo_id'];
-
-    // Pridobi ceno hrane iz tabele hrana
-    $query_hrana = mysqli_query($link, "SELECT cena FROM hrana WHERE id = $hrana_id");
-    $row = mysqli_fetch_assoc($query_hrana);
-    $cena = $row['cena'];
-
-    // Privzeta količina = 1
-    $query = "INSERT INTO `zaključna-naročila` (naročilo_id, hrana_id, količina, cena)
-              VALUES ($narocilo_id, $hrana_id, 1, $cena)";
-    mysqli_query($link, $query);
+// Preverimo, ali je uporabnik prijavljen
+if (!isset($_SESSION['idu'])) {
+    header("Location: prijava.php");
 }
+
+$uporabnik_id = $_SESSION['idu'];
+$hrana_id = $_POST['hrana_id'];
+$kolicina = $_POST['kolicina'];
+
+// Če še ni naročila, ga ustvari in shrani ID v sejo
+if (!isset($_SESSION['naročilo_id'])) {
+    $datum = date("Y-m-d H:i:s");
+    mysqli_query($link, "INSERT INTO naročila (datum, status, uporabnik_id) VALUES ('$datum', 'v teku', $uporabnik_id)");
+    $_SESSION['naročilo_id'] = mysqli_insert_id($link);
+}
+
+$narocilo_id = $_SESSION['naročilo_id'];
+
+// Doda v zakljucna_narocila
+mysqli_query($link, "
+    INSERT INTO zaključna_naročila (količina, naročilo_id, hrana_id)
+    VALUES ('$kolicina', '$narocilo_id', '$hrana_id')
+");
 
 header("Location: kosarica.php");
 exit;

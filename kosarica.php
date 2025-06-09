@@ -1,42 +1,31 @@
 <?php
 session_start();
-require_once 'baza.php';
+$link = mysqli_connect("localhost", "root", "", "dostava-hrane");
 
-$narocilo_id = $_SESSION['narocilo_id'] ?? null;
-
-if (!$narocilo_id) {
-    echo "<p>Košarica je prazna.</p>";
+if (!isset($_SESSION['naročilo_id'])) {
+    echo "Košarica je prazna.";
     exit;
 }
 
-// Pridobi jedi iz zaključna-naročila za to naročilo
-$query = "
-SELECT h.ime, zn.kolicina, zn.cena, (zn.kolicina * zn.cena) AS skupno
-FROM `zaključna-naročila` zn
-JOIN hrana h ON zn.hrana_id = h.id
-WHERE zn.naročilo_id = $narocilo_id
-";
+$narocilo_id = $_SESSION['naročilo_id'];
 
-$result = mysqli_query($link, $query);
-if (!$result) {
-    die("Napaka v poizvedbi: " . mysqli_error($link));
-}
+$rezultat = mysqli_query($link, "
+    SELECT h.ime, h.cena, zn.količina
+    FROM zaključna_naročila zn
+    JOIN hrana h ON zn.hrana_id = h.id
+    WHERE zn.naročilo_id = $narocilo_id
+");
 
 $skupaj = 0;
-echo "<h2>Tvoja košarica:</h2><ul>";
-while ($row = mysqli_fetch_assoc($result)) {
-    echo "<li>{$row['ime']} – {$row['kolicina']} x {$row['cena']} € = {$row['skupno']} €</li>";
-    $skupaj += $row['skupno'];
+
+echo "<h2>Tvoja košarica:</h2>";
+
+while ($vrstica = mysqli_fetch_assoc($rezultat)) {
+    $vmesna = $vrstica['cena'] * $vrstica['količina'];
+    $skupaj += $vmesna;
+    echo "<p>{$vrstica['ime']} x {$vrstica['količina']} = $vmesna €</p>";
 }
-echo "</ul>";
 
-echo "<p><strong>Skupna cena:</strong> $skupaj €</p>";
-
-echo "<form method='post' action='zakljuci_narocilo.php'>
-        <input type='hidden' name='narocilo_id' value='$narocilo_id'>
-        <input type='hidden' name='skupaj' value='$skupaj'>
-        <button type='submit'>Kupi in plačaj</button>
-      </form>";
-
-mysqli_close($link);
+echo "<hr><p><strong>Skupaj: $skupaj €</strong></p>";
+echo "<a href='zak_narocilo.php'>Zaključi naročilo</a>";
 ?>
