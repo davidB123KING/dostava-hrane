@@ -2,54 +2,61 @@
 session_start();
 $link = mysqli_connect("localhost", "root", "", "dostava-hrane");
 
-// Preveri vlogo
-if (!isset($_SESSION['vloga']) || $_SESSION['vloga'] !== 'dostavljalec') {
-    die("Dostop zavrnjen.");
+// Brez preverjanja vloge in prijave - za začetnike :)
+
+// Če je poslan POST za spremembo statusa
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['naročilo_id']) && isset($_POST['status'])) {
+    $id = $_POST['naročilo_id'];
+    $status = $_POST['status'];
+
+    // Preprosta update poizvedba (brez zaščite!)
+    mysqli_query($link, "UPDATE naročila SET status = '$status' WHERE id = $id");
+    echo "Status naročila številka $id je bil posodobljen na: $status<br>";
 }
 
-$dostavljalec_id = $_SESSION['idu'];
-
-// Pridobi vsa naročila, ki so zaključena ali v pripravi ali na poti (ali katerikoli status, ki ga želiš)
-$query = "
-    SELECT n.id, n.datum, n.status, u.ime, u.priimek, u.telefonska_stevilka
-    FROM naročila n
-    JOIN uporabniki u ON n.uporabnik_id = u.id_u
-    WHERE n.status IN ('v teku', 'na poti') 
-    ORDER BY n.datum DESC
-";
-
-$result = mysqli_query($link, $query);
+// Pridobi vsa naročila s statusom v pripravi, se pripravlja ali na poti
+$result = mysqli_query($link, "SELECT n.id, n.datum, n.status, u.ime, u.priimek, u.telefonska_stevilka
+                               FROM naročila n JOIN uporabniki u ON n.uporabnik_id = u.id_u
+                               WHERE n.status IN ('v pripravi', 'se pripravlja', 'na poti')
+                               ORDER BY n.datum DESC");
 
 echo "<h2>Naročila za dostavo</h2>";
 
-if (mysqli_num_rows($result) === 0) {
-    echo "<p>Trenutno ni naročil za dostavo.</p>";
+if (mysqli_num_rows($result) == 0) {
+    echo "Trenutno ni naročil za dostavo.";
     exit;
 }
 
 while ($narocilo = mysqli_fetch_assoc($result)) {
     echo "<div style='border:1px solid #ccc; padding:10px; margin-bottom:10px;'>";
-    echo "<strong>Naročilo št.: " . $narocilo['id'] . "</strong><br>";
+    echo "Naročilo št.: " . $narocilo['id'] . "<br>";
     echo "Datum: " . $narocilo['datum'] . "<br>";
-    echo "Status: " . htmlspecialchars($narocilo['status']) . "<br>";
-    echo "Naročnik: " . htmlspecialchars($narocilo['ime']) . " " . htmlspecialchars($narocilo['priimek']) . "<br>";
-    echo "Telefon: " . htmlspecialchars($narocilo['telefonska_stevilka']) . "<br>";
+    echo "Status: " . $narocilo['status'] . "<br>";
+    echo "Naročnik: " . $narocilo['ime'] . " " . $narocilo['priimek'] . "<br>";
+    echo "Telefon: " . $narocilo['telefonska_stevilka'] . "<br>";
 
-    // Pridobi jedi za to naročilo
     $id_narocila = $narocilo['id'];
-    $query_jedi = "
-        SELECT h.ime, h.cena, zn.količina
-        FROM zaključna_naročila zn
-        JOIN hrana h ON zn.hrana_id = h.id
-        WHERE zn.naročilo_id = $id_narocila
-    ";
-    $result_jedi = mysqli_query($link, $query_jedi);
+    $jedi = mysqli_query($link, "SELECT h.ime, zn.količina FROM zaključna_naročila zn JOIN hrana h ON zn.hrana_id = h.id WHERE zn.naročilo_id = $id_narocila");
 
     echo "<ul>";
-    while ($jeda = mysqli_fetch_assoc($result_jedi)) {
-        echo "<li>" . htmlspecialchars($jeda['ime']) . " - " . (int)$jeda['količina'] . " kosov</li>";
+    while ($jeda = mysqli_fetch_assoc($jedi)) {
+        echo "<li>" . $jeda['ime'] . " - " . $jeda['količina'] . " kosov</li>";
     }
     echo "</ul>";
 
+    echo "
+    <form method='post'>
+        <input type='hidden' name='naročilo_id' value='$id_narocila'>
+        <label>Spremeni status:</label>
+        <select name='status'>
+            <option value='se pripravlja'" . ($narocilo['status']=='se pripravlja' ? ' selected' : '') . ">Se pripravlja</option>
+            <option value='na poti'" . ($narocilo['status']=='na poti' ? ' selected' : '') . ">Na poti</option>
+            <option value='dostavljeno'" . ($narocilo['status']=='dostavljeno' ? ' selected' : '') . ">Dostavljeno</option>
+        </select>
+        <button type='submit'>Posodobi</button>
+    </form>
+    ";
+
+    echo "</div>";
 }
 ?>
