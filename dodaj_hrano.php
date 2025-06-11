@@ -2,13 +2,14 @@
 include_once 'seja.php';
 require_once 'baza.php';
 
-// Pridobi kategorije iz baze
-$sql = "SELECT id, ime FROM kategorije ORDER BY ime ASC";
-$rezultat = mysqli_query($link, $sql);
+// Pridobivanje kategorij iz baze
+$poizvedba = "SELECT id, ime
+              FROM kategorije";
+$rezultat = mysqli_query($link, $poizvedba);
 ?>
 
 <!DOCTYPE html>
-<html lang="sl">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Dodaj hrano</title>
@@ -16,29 +17,29 @@ $rezultat = mysqli_query($link, $sql);
 </head>
 <body>
 
-<div class="vse">
-    <h2>Dodaj novo hrano</h2>
+<h2>Dodaj hrano</h2>
 
-    <form action="hrana_v_bazo.php" method="post">
-        Ime hrane:<br>
-        <input type="text" name="ime" required><br><br>
-        Opis hrane:<br>
-        <textarea name="opis" rows="4" cols="50" required></textarea><br><br>
-        Cena (EUR):<br>
-        <input type="number" name="cena" required><br><br>
-        Kategorija:<br>
-        <select name="kategorija_id" required>
-            <option value="">Izberi kategorijo</option>
-            <?php
-            while ($kat = mysqli_fetch_assoc($rezultat)) {
-                echo '<option value="'.$kat['id'].'">'.$kat['ime'].'</option>';
-            }
-            ?>
-        </select><br><br>
+<form action="hrana_v_bazo.php" method="post">
+    Ime:<br>
+    <input type="text" name="ime" required><br><br>
+    Opis:<br>
+    <textarea name="opis" rows="4" required></textarea><br><br>
+    Cena (EUR):<br>
+    <input type="number" name="cena" step="0.01" required><br><br>  
 
-        <button type="submit">Shrani</button>
-    </form>
-</div>
+    Kategorija:<br>
+    <select name="kategorija_id" required>
+        <option value="">Izberi</option>
+
+        <?php
+        while ($vrstica = mysqli_fetch_assoc($rezultat)) {
+            echo "<option value='" . $vrstica['id'] . "'>" . $vrstica['ime'] . "</option>";
+        }
+        ?>
+    </select><br><br>
+
+    <input type="submit" value="Shrani">
+</form>
 
 </body>
 </html>

@@ -3,40 +3,39 @@ include_once 'seja.php';
 require_once 'baza.php';
 
 if (isset($_POST['dodaj'])) {
-    $ime = mysqli_real_escape_string($link, $_POST['ime']);
-    $opis = mysqli_real_escape_string($link, $_POST['opis']);
+    $ime = $_POST['ime'];
+    $opis = $_POST['opis'];
 
-    $sql = "INSERT INTO kategorije (ime, opis) VALUES ('$ime', '$opis')";
-    if (mysqli_query($link, $sql)) {
-        header("Location: admin.php"); // po dodajanju nazaj na admin
-        exit;
+    $poizvedba = "INSERT INTO kategorije VALUES (NULL, '$ime', '$opis')";
+
+    if (mysqli_query($link, $poizvedba)) {
+        header("refresh:2;url=admin.php");
+        echo "Kategorija dodana.";
     } else {
-        echo "Napaka pri dodajanju kategorije: " . mysqli_error($link);
+        echo "Napaka pri vnosu.";
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="sl">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Dodaj kategorijo</title>
     <link rel="stylesheet" href="oblika.css">
 </head>
 <body>
-    <h2>Dodaj novo kategorijo</h2>
+    <h2>Dodaj kategorijo</h2>
     <form method="post">
-        <div>
-            Ime kategorije:<br>
-            <input type="text" name="ime" required>
-        </div><br>
-        <div>
-            Opis:<br>
-            <textarea name="opis" rows="4" required></textarea>
-        </div><br>
-        <button type="submit" name="dodaj">Dodaj</button>
+        Ime kategorije:<br>
+        <input type="text" name="ime" required><br><br>
+
+        Opis:<br>
+        <textarea name="opis" rows="4" required></textarea><br><br>
+
+        <input type="submit" name="dodaj" value="Dodaj">
     </form>
 
-    <p><a href="admin.php">Nazaj na admin nadzorno ploščo</a></p>
+    <br><a href="admin.php">Nazaj</a>
 </body>
 </html>

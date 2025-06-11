@@ -18,8 +18,6 @@ if(isset($_POST['subm'])){
 		$_SESSION['idu']=$row['id_u'];
 		$_SESSION['log']=TRUE;
 
-		
-
 		if ($row['vloga'] === 'admin') {
         header("Location: admin.php");
 		exit;
