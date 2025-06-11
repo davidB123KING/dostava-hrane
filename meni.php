@@ -1,5 +1,6 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "dostava-hrane");
+include_once 'seja.php';
+require_once 'baza.php';
 
 $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
 

@@ -20,7 +20,6 @@ if (isset($_POST['shrani'])) {
     $telefon = $_POST['telefonska_stevilka'];
     $kraj_id = $_POST['kraj_id'];
     $vloga = $_POST['vloga'];
-
     $sql = "UPDATE uporabniki SET 
         ime='$ime', 
         priimek='$priimek', 
@@ -33,9 +32,9 @@ if (isset($_POST['shrani'])) {
         WHERE id_u=$id";
 
     if (mysqli_query($link, $sql)) {
-        echo "Posodobitev uspešna.<br>";
+        echo "Uspešno<br>";
     } else {
-        echo "Napaka pri posodobitvi.<br>";
+        echo "Napaka<br>";
     }
 }
 
@@ -99,14 +98,16 @@ $kraji = mysqli_query($link, "SELECT * FROM kraji");
     <input type="text" name="telefonska_stevilka" value="<?= $uredi['telefonska_stevilka'] ?>" placeholder="Telefon"><br><br>
 
     <select name="kraj_id">
-        <?php
-        mysqli_data_seek($kraji, 0); // Reset pointer, če je bilo že brano
-        while ($k = mysqli_fetch_assoc($kraji)) {
-            $sel = ($k['id_k'] == $uredi['kraj_id']) ? "selected" : "";
-            echo "<option value='{$k['id_k']}' $sel>{$k['kraj']}</option>";
-        }
-        ?>
-    </select><br><br>
+    <?php
+    // Nova poizvedba samo za ta select
+    $kraji = mysqli_query($link, "SELECT * FROM kraji");
+    while ($k = mysqli_fetch_assoc($kraji)) {
+        $sel = ($k['id_k'] == $uredi['kraj_id']) ? "selected" : "";
+        echo "<option value='{$k['id_k']}' $sel>{$k['kraj']}</option>";
+    }
+    ?>
+</select><br><br>
+
 
     <input type="text" name="vloga" value="<?= $uredi['vloga'] ?>" placeholder="Vloga"><br><br>
 

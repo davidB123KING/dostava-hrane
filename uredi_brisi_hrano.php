@@ -112,7 +112,7 @@ $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
 <?php } ?>
 
 <div>
-    <p><a href="admin.php">Nazaj na admin nadzorno ploščo</a></p>
+    <p><a href="admin.php">Nazaj na ADMIN</a></p>
 </div>
 </body>
 </html>

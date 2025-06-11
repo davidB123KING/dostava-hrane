@@ -1,22 +1,39 @@
+<!DOCTYPE html>
+<html lang="sl">   
+<head>
+    <meta charset="UTF-8">
+    <title>Meni</title>
+    <link rel="stylesheet" href="oblika.css">
+</head>
+<body>
+</body>
+</html>
+
 <?php
-session_start();
-$link = mysqli_connect("localhost", "root", "", "dostava-hrane");
+include_once 'seja.php';
+require_once 'baza.php';
 
 // Preverimo, ali je uporabnik prijavljen in ima odprto naročilo
-if (!isset($_SESSION['idu']) || !isset($_SESSION['naročilo_id'])) {
-    die("Napaka: uporabnik ni prijavljen ali ni odprtega naročila.");
+if (!isset($_SESSION['idu'])) {
+    header("Location: prijava.php");
+    exit; // ustavimo izvajanje, ker se preusmerjamo
 }
 
-$narocilo_id = $_SESSION['naročilo_id'];
+if (!isset($_SESSION['naročilo_id'])) {
+    echo "Nimate odprtega naročila.";
+    exit;
+}
 
-// ✅ Spremeni status naročila v "v pripravi" (privzeto po zaključku nakupa)
+$narocilo_id = (int)$_SESSION['naročilo_id'];
+
+// Spremeni status naročila v "v pripravi"
 mysqli_query($link, "UPDATE naročila SET status = 'v pripravi' WHERE id = $narocilo_id");
 
 // Po želji počistimo sejo, da lahko začne novo naročilo
 unset($_SESSION['naročilo_id']);
 
-// Lahko izpišeš potrditev ali preusmeriš
-echo "Naročilo uspešno oddano. Status: v pripravi.";
-echo "<br><a href='moja_narocila.php'>Poglej svoja naročila</a>";
+// Izpišemo potrditev in povezavo
+echo "Naročilo uspešno oddano. Status: v pripravi.<br>";
+echo "<a href='moja_narocila.php'>Poglej svoja naročila</a>";
 exit;
 ?>

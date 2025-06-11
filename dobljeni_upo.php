@@ -16,7 +16,7 @@ $v=$_POST['vloga'];
 $query="INSERT INTO uporabniki VALUES (NULL ,'$i' ,'$p','$n', '$e' ,'$g' ,'$t','$k','$v' );";/*g=g2*/
 
 if($result=mysqli_query($link ,$query)){
-	header("refresh:3;url=index.php");
+	header("refresh:3;url=prijava.php");
 	echo'Vnos je bil uspešen';
 }
 else{

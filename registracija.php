@@ -1,5 +1,5 @@
 <?php
-require_once'baza.php';
+require_once 'baza.php';
 $sql="SELECT * FROM kraji;";
 $result= mysqli_query($link ,$sql);
 ?>
@@ -23,18 +23,13 @@ $result= mysqli_query($link ,$sql);
 		<p>Mail:<input type="email"name="email"placeholder="vnesi mail"required></p>
 		<p>Geslo:<input type="password"name="geslo"placeholder="vnesi geslo"></p>
         <p>Telefon:<input type="tel"name="telefonska_stevilka"placeholder="vnesi telefon"required></p>
-        <p>Izberi vlogo<select name="vloga" required>
-        <option value="uporabnik">uporabnik</option>
-        <option value="dostavljalec">dostavljalec</option>
-        <option value="admin">admin</option>
-        </select></p>
+        <p><input type="hidden" name="vloga" value="uporabnik"></p>
 		<p>Kraj:<select name="kraj_id" required>
 		<?php
 		while($row=mysqli_fetch_array($result)){
 			echo '<option value="'.$row['id_k'].'">'.$row['kraj'].'</option>';
 		}
 		?>
-		
 			</select></p>
 		<input type="submit" value="vpis" name="subm">
 	</form>

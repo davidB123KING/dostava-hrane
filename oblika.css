@@ -22,6 +22,7 @@ p {
     color: #2e2e2e;
     font-size: 16px;
     line-height: 22px;
+    text-align: center;
 }
 
 /* Naslovi */
@@ -40,7 +41,7 @@ a  {
     border-radius: 6px;
     margin-right: 10px;
     font-weight: bold;
-    display: inline-block;
+    display:inline-block;
 }
 
 a:hover {
@@ -88,4 +89,7 @@ input[type="submit"]{
     border: none;                
     border-radius: 4px;                      
     font-size: 16px;  
+}
+input[type="submit"]:hover {
+    background-color: #124214;  
 }
