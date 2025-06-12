@@ -1,9 +1,9 @@
 <?php
 
-$host='sql200.infinityfree.com';
-$user='if0_39211211';
-$password='o5VWCaxdFMww';
-$database='if0_39211211_XXX';
+$host='localhost';
+$user='root';
+$password='';
+$database='dostava-hrane';
 
 $link=mysqli_connect($host, $user ,$password ,$database)
 or die("Povezovanje ni mogoče");

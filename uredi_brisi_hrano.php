@@ -2,7 +2,6 @@
 include_once 'seja.php';
 require_once 'baza.php';
 
-// Brisanje (če je poslan GET parameter izbris_id)
 if (isset($_GET['izbris_id'])) {
     $id = $_GET['izbris_id'];
     $sql = "DELETE FROM hrana WHERE id = '$id'";
@@ -16,8 +15,6 @@ if (isset($_GET['izbris_id'])) {
         echo "napaka";
     }
 }
-
-// Urejanje - prikaži obrazec za urejanje, če je poslan id_za_urejanje
 $uredi = null;
 if (isset($_GET['id_za_urejanje'])) {
     $id = $_GET['id_za_urejanje'];
@@ -25,7 +22,6 @@ if (isset($_GET['id_za_urejanje'])) {
     $uredi = mysqli_fetch_assoc($res);
 }
 
-// Shrani spremembe (preko GET, kot želiš - brez preverjanj)
 if (isset($_GET['shrani'])) {
     $id = $_GET['id'];
     $ime = $_GET['ime'];
@@ -43,18 +39,17 @@ if (isset($_GET['shrani'])) {
 
     if ($result) {
         header("refresh:3;url=uredi_brisi_hrano.php");
-        echo "Posodobitev je bila uspešna. Preusmerjam nazaj čez 3 sekunde...";
+        echo "Posodobitev je bila uspešna.";
     } else {
         header("refresh:3;url=uredi_brisi_hrano.php?id_za_urejanje=$id");
-        echo "Napaka pri posodobitvi. Preusmerjam nazaj čez 3 sekunde...";
+        echo "Napaka pri posodobitvi.";
     }
     exit;
 }
 
-// Pridobi podatke o hrani in kategorijah za prikaz
 $hrana = mysqli_query($link, "
     SELECT h.id, h.ime, h.opis, h.cena, h.kategorija_id, k.ime AS ime_kategorije
-    FROM hrana h JOIN kategorije k ON h.kategorija_id = k.id
+    FROM hrana h INNER JOIN kategorije k ON h.kategorija_id = k.id
 ");
 $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
 ?>
@@ -83,8 +78,8 @@ $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
             <td><?= $vr['opis'] ?></td>
             <td><?= $vr['cena'] ?> €</td>
             <td><?= $vr['ime_kategorije'] ?></td>
-            <td><a href="uredi_brisi_hrano.php ?id_za_urejanje=<?= $vr['id'] ?>">Uredi</a></td>
-            <td><a href="uredi_brisi_hrano.php ?izbris_id=<?= $vr['id'] ?>">Izbriši</a></td>
+            <td><a href="uredi_brisi_hrano.php?id_za_urejanje=<?= $vr['id'] ?>">Uredi</a></td>
+            <td><a href="uredi_brisi_hrano.php?izbris_id=<?= $vr['id'] ?>">Izbriši</a></td>
         </tr>
     <?php } ?>
 </table>
