@@ -63,7 +63,7 @@ $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
 <html lang="sl">
 <head>
     <meta charset="UTF-8">
-    <title>Urejanje in brisanje hrane</title>
+    <title>uredi , brisi</title>
     <link rel="stylesheet" href="oblika.css">
 </head>
 <body>
