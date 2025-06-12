@@ -13,10 +13,9 @@
 include_once 'seja.php';
 require_once 'baza.php';
 
-// Preverimo, ali je uporabnik prijavljen in ima odprto naročilo
 if (!isset($_SESSION['idu'])) {
     header("Location: prijava.php");
-    exit; // ustavimo izvajanje, ker se preusmerjamo
+    exit; // spet meje header mal zajebavu , nekje je delal nekje pa ne
 }
 
 if (!isset($_SESSION['naročilo_id'])) {
@@ -26,14 +25,13 @@ if (!isset($_SESSION['naročilo_id'])) {
 
 $narocilo_id = (int)$_SESSION['naročilo_id'];
 
-// Spremeni status naročila v "v pripravi"
 mysqli_query($link, "UPDATE naročila SET status = 'v pripravi' WHERE id = $narocilo_id");
 
-// Po želji počistimo sejo, da lahko začne novo naročilo
 unset($_SESSION['naročilo_id']);
 
-// Izpišemo potrditev in povezavo
+echo "<div class='sredina-link'>";
 echo "Naročilo uspešno oddano. Status: v pripravi.<br>";
 echo "<a href='moja_narocila.php'>Poglej svoja naročila</a>";
+echo "</div>";
 exit;
 ?>

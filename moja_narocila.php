@@ -44,6 +44,7 @@ while ($narocilo = mysqli_fetch_assoc($result)) {
     echo "</ul>";
     echo "Skupaj: " . $skupaj . " €<br><br>";
     echo "<hr>";
+    echo "<a href='index.php'>Nazaj na začetek</a><br>";
 }
 ?>
 <!DOCTYPE html>

@@ -5,31 +5,47 @@ require_once 'baza.php';
 
 <!DOCTYPE html>
 <html lang="sl">
-    <head>
-        <title>index-stran</title>
-        <link rel="stylesheet" href="oblika.css">
-
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="oblika.css">
 </head>
 <body>
-        <div class="meni">
-            <div class="levo">
-            <a href="index.php">Domov</a>
-            <a href="meni.php">Meni</a>
-            <a href="kontakt.php">Kontakt</a>
-            <span id="desno">
-            <?php include 'glava.php'; ?>
-            <a href="kosarica.php">Košarica</a></span>
+
+<div class="meni">
+    <a href="index.php">Domov</a>
+    <a href="meni.php">Meni</a>
+    <a href="kosarica.php">Košarica</a>
+    <span id="glava"><?php include 'glava.php'; ?></span>
 </div>
 
-            
-</div>
-        <div class="vse">
+<div class="vse">
         <div id="notranji">
-            <h1>DOSTAVA HRANE - na dom enostavno in hitro</h1>
-            <p>naroči zdaj iz najljubših restavracij</p>
-</div>
-</div>
 
+    <a href="meni.php" class="restavracija" >
+        <img src="jp.png" alt="1">
+        <h2>James Place</h2>
+        <p>Pridi in pojej kar si želiš.</p>
+    </a>
+
+    <a href="meni.php" class="restavracija" >
+        <img src="velun.jfif" alt="2">
+        <h2>Velun</h2>
+        <p>Ko hočeš pico prideš sem</p>
+    </a>
+
+    <a href="meni.php" class="restavracija" >
+        <img src="kitajska.jfif" alt="3">
+        <h2>Kitajska restvracija</h2>
+        <p>Pridi po azijske dobrote</p>
+    </a>
+</div>
+</div>
+<footer>
+  <a href="povezave.php">
+    <img src="footer.png" alt="fohjtra">
+  </a>
+</footer>
 
 </body>
-    </html>
+</html>

@@ -19,10 +19,12 @@ if(isset($_POST['subm'])){
 		$_SESSION['log']=TRUE;
 
 		if ($row['vloga'] === 'admin') {
-        header("refresh:1;url= admin.php");
-    } 
+    header("Location: admin.php");
+    exit;
+} /*brez exit mi ni hotlo it na admin.php*/
+
 	if ($row['vloga'] === 'dostavljalec') {
-		header("refresh:1;url= dostavljalec.php");
+		header("refresh:1;url=dostavljalec.php");
 	}
 	
 	else {

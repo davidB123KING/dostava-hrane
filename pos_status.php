@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once 'seja.php';
 require_once 'baza.php';
 
 if (isset($_POST['naročilo_id']) && isset($_POST['nov_status'])) {

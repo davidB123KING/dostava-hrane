@@ -66,7 +66,7 @@ $kraji = mysqli_query($link, "SELECT * FROM kraji");
 <body>
 
 <h2>Seznam uporabnikov</h2>
-<table border="1" cellpadding="5" cellspacing="0">
+<table>
     <tr>
         <th>Ime</th><th>Priimek</th><th>Email</th><th>Kraj</th><th>Vloga</th><th>Možnosti</th>
     </tr>
@@ -84,10 +84,11 @@ $kraji = mysqli_query($link, "SELECT * FROM kraji");
     </tr>
     <?php endwhile; ?>
 </table>
+<p><a href="admin.php">Nazaj</a></p>
 
 <?php if ($uredi): ?>
 <hr>
-<h3>Uredi uporabnika</h3>
+<h2>Uredi uporabnika</h2>
 <form method="post" action="upravljanje_upo.php">
     <input type="hidden" name="id_u" value="<?= $uredi['id_u'] ?>">
     <input type="text" name="ime" value="<?= $uredi['ime'] ?>" placeholder="Ime"><br><br>

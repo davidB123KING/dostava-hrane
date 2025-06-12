@@ -68,7 +68,7 @@ $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
 </head>
 <body>
 <h2>Seznam hrane</h2>
-<table border="1" cellpadding="10">
+<table>
     <tr>
         <th>Ime</th>
         <th>Opis</th>
@@ -112,7 +112,7 @@ $kategorije = mysqli_query($link, "SELECT * FROM kategorije");
 <?php } ?>
 
 <div>
-    <p><a href="admin.php">Nazaj na ADMIN</a></p>
+    <p><a href="admin.php">Nazaj</a></p>
 </div>
 </body>
 </html>

@@ -36,6 +36,7 @@ if (isset($_POST['dodaj'])) {
         <input type="submit" name="dodaj" value="Dodaj">
     </form>
 
-    <br><a href="admin.php">Nazaj</a>
+    <br>
+    <p><a href="admin.php">Nazaj</a></p>
 </body>
 </html>
