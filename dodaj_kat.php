@@ -6,9 +6,9 @@ if (isset($_POST['dodaj'])) {
     $ime = $_POST['ime'];
     $opis = $_POST['opis'];
 
-    $poizvedba = "INSERT INTO kategorije VALUES (NULL, '$ime', '$opis')";
+    $query = "INSERT INTO kategorije VALUES (NULL, '$ime', '$opis')";
 
-    if (mysqli_query($link, $poizvedba)) {
+    if (mysqli_query($link, $query)) {
         header("refresh:2;url=admin.php");
         echo "Kategorija dodana.";
     } else {

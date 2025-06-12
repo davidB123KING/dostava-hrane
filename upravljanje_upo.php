@@ -1,7 +1,6 @@
 <?php
 require_once 'baza.php';
 
-// Brisanje uporabnika
 if (isset($_GET['izbrisi'])) {
     $id = $_GET['izbrisi'];
     mysqli_query($link, "DELETE FROM uporabniki WHERE id_u = $id");
@@ -9,7 +8,6 @@ if (isset($_GET['izbrisi'])) {
     exit;
 }
 
-// Posodobi uporabnika
 if (isset($_POST['shrani'])) {
     $id = $_POST['id_u'];
     $ime = $_POST['ime'];
@@ -38,7 +36,6 @@ if (isset($_POST['shrani'])) {
     }
 }
 
-// Pridobi uporabnika za urejanje, če je podan GET parameter 'uredi'
 $uredi = null;
 if (isset($_GET['uredi'])) {
     $id = $_GET['uredi'];
@@ -46,16 +43,13 @@ if (isset($_GET['uredi'])) {
     $uredi = mysqli_fetch_assoc($rez);
 }
 
-// Pridobi vse uporabnike za izpis
 $uporabniki = mysqli_query($link, "
     SELECT u.*, k.kraj FROM uporabniki u
     LEFT JOIN kraji k ON u.kraj_id = k.id_k
 ");
-
-// Pridobi vse kraje za <select> v obrazcu urejanja
 $kraji = mysqli_query($link, "SELECT * FROM kraji");
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="sl">
 <head>
@@ -68,53 +62,57 @@ $kraji = mysqli_query($link, "SELECT * FROM kraji");
 <h2>Seznam uporabnikov</h2>
 <table>
     <tr>
-        <th>Ime</th><th>Priimek</th><th>Email</th><th>Kraj</th><th>Vloga</th><th>Možnosti</th>
+        <th>Ime</th>
+        <th>Priimek</th>
+        <th>Email</th>
+        <th>Kraj</th>
+        <th>Vloga</th>
+        <th>Možnosti</th>
     </tr>
-    <?php while ($u = mysqli_fetch_assoc($uporabniki)): ?>
+    <?php while ($u = mysqli_fetch_assoc($uporabniki)) { ?>
     <tr>
-        <td><?= $u['ime'] ?></td>
-        <td><?= $u['priimek'] ?></td>
-        <td><?= $u['email'] ?></td>
-        <td><?= $u['kraj'] ?></td>
-        <td><?= $u['vloga'] ?></td>
+        <td><?php echo $u['ime']; ?></td>
+        <td><?php echo $u['priimek']; ?></td>
+        <td><?php echo $u['email']; ?></td>
+        <td><?php echo $u['kraj']; ?></td>
+        <td><?php echo $u['vloga']; ?></td>
         <td>
-            <a href="upravljanje_upo.php?uredi=<?= $u['id_u'] ?>">Uredi</a> | 
-            <a href="upravljanje_upo.php?izbrisi=<?= $u['id_u'] ?>">Izbriši</a>
+            <a href="upravljanje_upo.php?uredi=<?php echo $u['id_u']; ?>">Uredi</a> | 
+            <a href="upravljanje_upo.php?izbrisi=<?php echo $u['id_u']; ?>">Izbriši</a>
         </td>
     </tr>
-    <?php endwhile; ?>
+    <?php } ?>
 </table>
+
 <p><a href="admin.php">Nazaj</a></p>
 
-<?php if ($uredi): ?>
+<?php if ($uredi) { ?>
 <hr>
 <h2>Uredi uporabnika</h2>
 <form method="post" action="upravljanje_upo.php">
-    <input type="hidden" name="id_u" value="<?= $uredi['id_u'] ?>">
-    <input type="text" name="ime" value="<?= $uredi['ime'] ?>" placeholder="Ime"><br><br>
-    <input type="text" name="priimek" value="<?= $uredi['priimek'] ?>" placeholder="Priimek"><br><br>
-    <input type="email" name="email" value="<?= $uredi['email'] ?>" placeholder="Email"><br><br>
-    <input type="text" name="naslov" value="<?= $uredi['naslov'] ?>" placeholder="Naslov"><br><br>
-    <input type="text" name="geslo" value="<?= $uredi['geslo'] ?>" placeholder="Geslo"><br><br>
-    <input type="text" name="telefonska_stevilka" value="<?= $uredi['telefonska_stevilka'] ?>" placeholder="Telefon"><br><br>
+    <input type="hidden" name="id_u" value="<?php echo $uredi['id_u']; ?>">
+    <input type="text" name="ime" value="<?php echo $uredi['ime']; ?>" placeholder="Ime"><br><br>
+    <input type="text" name="priimek" value="<?php echo $uredi['priimek']; ?>" placeholder="Priimek"><br><br>
+    <input type="email" name="email" value="<?php echo $uredi['email']; ?>" placeholder="Email"><br><br>
+    <input type="text" name="naslov" value="<?php echo $uredi['naslov']; ?>" placeholder="Naslov"><br><br>
+    <input type="text" name="geslo" value="<?php echo $uredi['geslo']; ?>" placeholder="Geslo"><br><br>
+    <input type="text" name="telefonska_stevilka" value="<?php echo $uredi['telefonska_stevilka']; ?>" placeholder="Telefon"><br><br>
 
     <select name="kraj_id">
-    <?php
-    // Nova poizvedba samo za ta select
-    $kraji = mysqli_query($link, "SELECT * FROM kraji");
-    while ($k = mysqli_fetch_assoc($kraji)) {
-        $sel = ($k['id_k'] == $uredi['kraj_id']) ? "selected" : "";
-        echo "<option value='{$k['id_k']}' $sel>{$k['kraj']}</option>";
-    }
-    ?>
-</select><br><br>
+        <?php
+        $kraji = mysqli_query($link, "SELECT * FROM kraji");
+        while ($k = mysqli_fetch_assoc($kraji)) {
+            $sel = ($k['id_k'] == $uredi['kraj_id']) ? "selected" : "";
+            echo "<option value='" . $k['id_k'] . "' $sel>" . $k['kraj'] . "</option>";
+        }
+        ?>
+    </select><br><br>
 
-
-    <input type="text" name="vloga" value="<?= $uredi['vloga'] ?>" placeholder="Vloga"><br><br>
+    <input type="text" name="vloga" value="<?php echo $uredi['vloga']; ?>" placeholder="Vloga"><br><br>
 
     <button type="submit" name="shrani">Shrani</button>
 </form>
-<?php endif; ?>
+<?php } ?>
 
 </body>
 </html>
